@@ -34,6 +34,19 @@ export class VacationPackage {
         return this.reference;
       }
 
+      
+      public clone(): Reservation[] {
+        return this.generateReservationHolders();
+      }
+      public generateReservationHolders(): Reservation[] {
+        const generated: Reservation[] = [];
+        // Iterate over the holders and create the clones
+        for (const r of this.reservationHolders) {
+          generated.push(r);
+        }
+        return generated;
+      }
+
 
 
       public toString(): string {

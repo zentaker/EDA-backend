@@ -5,10 +5,10 @@ export class AirlineReservation extends Reservation{
     constructor(
         provider: string,
         contractCode: string,
-        private originAirportCode: string,
-        private originFlightNumber: string,
-        private returnFlightAirportCode: string,
-        private returnFlightNumber: string,
+        private originAirportCode?: string,
+        private originFlightNumber?: string,
+        private returnFlightAirportCode?: string,
+        private returnFlightNumber?: string,
 
     ){
         super('AIRLINE', provider, contractCode);

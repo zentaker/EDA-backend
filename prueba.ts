@@ -13,6 +13,7 @@ import { Reservation } from "./objetos/Reservation/Reservation";
 import { VacationPackage } from "./objetos/VacationPackage";
 import { Proposal } from "./objetos/Proposal";
 import { AirlineReservation } from "./objetos/Reservation/AirlineReservation";
+import { HotelReservation } from "./objetos/Reservation/HotelReservation";
 
 const customerRepo = new CustomerRepository();
 
@@ -63,8 +64,8 @@ const VacationPackageRepository = new VacationPackageRepo();
 
 // BAH3NIGHTHOTELAIR
 const holders1: Reservation[] = [];
-holders1.push(new Reservation('HOTEL', 'BestWestern', 'H1234'));
-holders1.push(new Reservation("AIRLINE","United Airlines", "A4567"));
+holders1.push(new HotelReservation('BestWestern', 'H1234'));
+holders1.push(new AirlineReservation("United Airlines", "A4567"));
 
 
 const VacationPackage1 = new VacationPackage(
@@ -85,8 +86,10 @@ VacationPackageRepository.add(VacationPackage1);
 
 // FLKEYS5NIGHTHOTELAIRRENTAL
 const holders2: Reservation[] = [];
-holders2.push(new Reservation('HOTEL', 'Marriott Key West', 'H1999'));
-holders2.push(new Reservation("AIRLINE","American Airlines", "A9122"));
+
+//agregar por sub clase>>>>>>> provider / contract code
+holders2.push(new HotelReservation('Marriott Key West', 'H1999'));
+holders2.push(new AirlineReservation("American Airlines", "A9122"));
 
 
 const VacationPackage2 = new VacationPackage(
@@ -116,12 +119,20 @@ proposal1.setupReservationDates(0,date.create(13,20,2023),date.create(13,20,2023
 proposal1.setupReservationDates(1,date.create(13,20,2023),date.create(13,20,2023));
 proposalRepo.add(proposal1);
 console.log('--------------')
-console.log(proposalRepo.getAll());
+//console.log(proposalRepo.getAll());
 
 
 const proposalbooking = proposalRepo.get(500);
 //const booking1 = new Booking(6000, proposalbooking);
 
+
+
+
+
+
+
+
+console.log('-------FLOW TESTING-------')
 // FLOW TESTING
 // =======================================================
 // Customer calls in - Sales agent uses customer's phone number to pull customer information
@@ -136,17 +147,50 @@ const proposal2 = new Proposal(5002, 101, pacakgeforproposal2, date.createNow())
 
 
 
-// Sales Agent sets the dates for Hotel - Check in Date = March 15, 2021 Checkout = March 17, 2021
-proposal2.setupReservationDates(0,date.create(13,20,2023),date.create(13,20,2023));
+// Sales Agent sets the dates for Hotel - Check in Date = March 15, 2023 Checkout = March 17, 2023
+proposal2.setupReservationDates(0,date.create(3,15,2023),date.create(3,17,2023));
+
+
 // Sales agent sets up the flights
-const airlineReservation: AirlineReservation = proposal2.getReservationIndex(1) as AirlineReservation;
+
+// cuando se crea la propuesta y se toma el paquete vacacional se clonan las reservaciones 
+//console.log(proposal1);
+console.log("-------------------");
+
+// se toma la reserva del avion para agregarle los datos del cliente
+const reservation1Hotel = proposal1.getReservationIndex(0);
+//console.log(reservation1Hotel);
+console.log("-------------------");
+// Sales Agent sets the dates for Hotel - Check in Date = March 15, 2021 Checkout = March 17, 2021
+
+console.log("-------------------");
+proposal1.setupReservationDates(0, date.create(3,15,2023), date.create(2,15,2023));
+console.log(proposal1.getReservationIndex(0)?.getStartDate());
+console.log(proposal1.getReservationIndex(0)?.getEndDate());
+console.log("-------------------");
+console.dir(proposal1.getReservationIndex(0));
+
+// se agregan las informaciones del vuelo 
+console.log("-------------------");
+console.dir(proposal1.getReservationIndex(1));
+const airlineReservation: AirlineReservation = proposal1.getReservationIndex(1) as AirlineReservation;
+
 // United flight UA431 from Newark/NJ airport at 8:30 AM
 airlineReservation.setupOriginFlightInformation(
- date.createWithTime(13,20,2023,11,15),
- "EWR",
- "UA4231"
- );
-console.log(proposal2);
+  date.createWithTime(2, 15, 2023, 8, 30),
+  "EWR",
+  "UA4231"
+);
+airlineReservation.setupReturnFlightInformation(
+    date.createWithTime(2,17,2023,16,30),
+    "BAH",
+    "UA1324"
+)
+
+console.log(proposal1);
+console.log(proposal1.getReservationIndex(1)?.getStartDate());
+
+
 
 
 

@@ -19,7 +19,10 @@ export class Proposal {
         private custumeReference: number,
         private vacationPackage: VacationPackage | null,
         private createddate: Date,
-        //no entiendo que hacer con lo siguiente>>
+        
+
+
+        // una propuesta tiene varias reservaciones ya sea de avion de carro o hotel
         private reservations: Reservation[] =[],
         //private passangers: Pax[],
         //private offer: Offer[],
@@ -27,20 +30,36 @@ export class Proposal {
         //private ProposalSatus: 'ACCEPTED'|'REJECTED' | 'ON-HOLD'
 
 
-    ){}
+    ){
+        // en el momento de crear la popuesta tiene que clonar las reservaciones de los paquetes vacacionales >>>>>
+        if (vacationPackage) {
+            this.reservations = vacationPackage.clone()
+        }
+       
+    }
     getReference() {
         return this.reference
     }
+    
+ 
     getReservationIndex(index: number): Reservation | undefined {
         return this.reservations[index];
     }
+  
     // se acede a la reserva y se le crean las fechas 
+ 
     public setupReservationDates(index: number, startDate: Date, endDate: Date): boolean {
         if (index >= this.reservations.length) return false;
-        return this.reservations[index].setupDates(startDate, endDate);
+        const reservation = this.reservations[index];
+        console.log(startDate);
+        reservation.setupDates(startDate, endDate);
+        console.log(reservation.getStartDate())
+        return true;
+        
+      }
     }
+
     
 
 
-}
 

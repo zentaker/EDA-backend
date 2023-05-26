@@ -4,7 +4,7 @@ export class DateUtility {
      * @return
      */
     public create(month: number, day: number, year: number): Date {
-      const calendar = new Date(year, month, day);
+      const calendar = new Date(year, month-1, day);
       return calendar;
     }
     public createNow(){
@@ -18,7 +18,7 @@ export class DateUtility {
      * @return
      */
     public createWithTime(month: number, day: number, year: number, hour: number, minute: number): Date {
-      const calendar = new Date(year, month, day, hour, minute, 0);
+      const calendar = new Date(year, month-1, day, hour, minute);
       return calendar;
     }
   
@@ -29,5 +29,6 @@ export class DateUtility {
       const sdf = new Intl.DateTimeFormat('en-US', { month: '2-digit', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
       return sdf.format(date);
     }
+    
   }
   
