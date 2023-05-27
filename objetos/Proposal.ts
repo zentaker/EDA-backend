@@ -16,7 +16,7 @@ import { Reservation } from "./Reservation/Reservation";
 export class Proposal {
     constructor(
         private reference: number,
-        private custumeReference: number,
+        private customerReference: number,
         private vacationPackage: VacationPackage | null,
         private createddate: Date,
         
@@ -40,6 +40,9 @@ export class Proposal {
     getReference() {
         return this.reference
     }
+    getCustomerReference(): number {
+        return this.customerReference;
+      }
     
  
     getReservationIndex(index: number): Reservation | undefined {
