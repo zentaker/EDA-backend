@@ -1,4 +1,4 @@
-import { setupMessaging } from "./ApplicationLayer/SetUpMessaging";
+import { setupMessaging } from "./ApplicationLayer/MessaginService";
 import { BookingRepository } from "./TestImplementacion/bookingRepositorio";
 import { ProposalRepository } from "./TestImplementacion/ProposalRepositorio";
 import { DateUtility } from "./DomainLayer/utils/DateUtility";
