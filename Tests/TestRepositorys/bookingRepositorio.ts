@@ -1,4 +1,4 @@
-import { Booking } from "../DomainLayer/booking/Booking";
+import { Booking } from "../../DomainLayer/booking/Booking";
 
 
 export class BookingRepository {

@@ -1,4 +1,4 @@
-import { VacationPackage } from "../DomainLayer/booking/entitys/VacationPackage";
+import { VacationPackage } from "../../DomainLayer/booking/entitys/VacationPackage";
 
 export class VacationPackageRepo {
     private VacationPackages: VacationPackage[];

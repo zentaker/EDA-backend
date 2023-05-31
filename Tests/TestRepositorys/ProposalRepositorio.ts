@@ -1,4 +1,4 @@
-import { Proposal } from "../DomainLayer/booking/entitys/Proposal"; 
+import { Proposal } from "../../DomainLayer/booking/entitys/Proposal"; 
 
 export class ProposalRepository {
     private Proposals: Proposal[];

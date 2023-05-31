@@ -5,9 +5,9 @@ console.log(mensaje);
 
 import { Customer } from "./DomainLayer/booking/entitys/Customer";
 import { Address } from "./DomainLayer/booking/valueObjects/Adress";
-import { CustomerRepository } from "./TestImplementacion/CustomerRepositorio";
-import { VacationPackageRepo } from "./TestImplementacion/VacationPackageRepositorio";
-import { ProposalRepository } from "./TestImplementacion/ProposalRepositorio";
+import { CustomerRepository } from "./Tests/TestRepositorys/CustomerRepositorio";
+import { VacationPackageRepo } from "./Tests/TestRepositorys/VacationPackageRepositorio";
+import { ProposalRepository } from "./Tests/TestRepositorys/ProposalRepositorio";
 import { DateUtility } from "./DomainLayer/utils/DateUtility"
 import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Reservation";
 import { VacationPackage } from "./DomainLayer/booking/entitys/VacationPackage";

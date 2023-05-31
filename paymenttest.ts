@@ -1,10 +1,10 @@
 import { setupMessaging } from "./ApplicationLayer/MessaginService";
-import { BookingRepository } from "./TestImplementacion/bookingRepositorio";
-import { ProposalRepository } from "./TestImplementacion/ProposalRepositorio";
+import { BookingRepository } from "./Tests/TestRepositorys/bookingRepositorio";
+import { ProposalRepository } from "./Tests/TestRepositorys/ProposalRepositorio";
 import { DateUtility } from "./DomainLayer/utils/DateUtility";
 import { Booking } from "./DomainLayer/booking/Booking";
 import { Proposal } from "./DomainLayer/booking/entitys/Proposal";
-import { VacationPackageRepo } from "./TestImplementacion/VacationPackageRepositorio";
+import { VacationPackageRepo } from "./Tests/TestRepositorys/VacationPackageRepositorio";
 import { AirlineReservation } from "./DomainLayer/booking/valueObjects/Reservation/AirlineReservation";
 import { HotelReservation } from "./DomainLayer/booking/valueObjects/Reservation/HotelReservation";
 import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Reservation";
