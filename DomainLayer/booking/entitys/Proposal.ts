@@ -1,5 +1,5 @@
-import { VacationPackage } from "./entitys/VacationPackage";
-import { Reservation } from "./Reservation/Reservation";
+import { VacationPackage } from "./VacationPackage";
+import { Reservation } from "../valueObjects/Reservation/Reservation";
 
 
 /**

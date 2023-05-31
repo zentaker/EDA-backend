@@ -1,4 +1,4 @@
-import { Proposal } from "./Proposal";
+import { Proposal } from "./entitys/Proposal";
 
 
 //Strategic Pattern: Aggregate

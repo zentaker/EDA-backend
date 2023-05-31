@@ -1,4 +1,4 @@
-import { Address } from "./Adress";
+import { Address } from "../valueObjects/Adress";
 
 //Strategic Pattern: Entity
 export class Customer {

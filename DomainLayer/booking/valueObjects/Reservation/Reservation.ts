@@ -1,4 +1,4 @@
-import { DateUtility } from "../../../objetos/utils/DateUtility";
+import { DateUtility } from "../../../utils/DateUtility";
 
 
 export class Reservation {
