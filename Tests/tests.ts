@@ -3,18 +3,18 @@ const mensaje = "------ prueba cliente --------";
 
 console.log(mensaje);
 
-import { Customer } from "./DomainLayer/booking/entitys/Customer";
-import { Address } from "./DomainLayer/booking/valueObjects/Adress";
-import { CustomerRepository } from "./Tests/TestRepositorys/CustomerRepositorio";
-import { VacationPackageRepo } from "./Tests/TestRepositorys/VacationPackageRepositorio";
-import { ProposalRepository } from "./Tests/TestRepositorys/ProposalRepositorio";
-import { DateUtility } from "./DomainLayer/utils/DateUtility"
-import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Reservation";
-import { VacationPackage } from "./DomainLayer/booking/entitys/VacationPackage";
-import { Proposal } from "./DomainLayer/booking/entitys/Proposal";
-import { AirlineReservation } from "./DomainLayer/booking/valueObjects/Reservation/AirlineReservation";
-import { HotelReservation } from "./DomainLayer/booking/valueObjects/Reservation/HotelReservation";
-import { Booking } from "./DomainLayer/booking/Booking";
+import { Customer } from "../DomainLayer/booking/entitys/Customer";
+import { Address } from "../DomainLayer/booking/valueObjects/Adress";
+import { CustomerRepository } from "../Tests/TestRepositorys/CustomerRepositorio";
+import { VacationPackageRepo } from "../Tests/TestRepositorys/VacationPackageRepositorio";
+import { ProposalRepository } from "../Tests/TestRepositorys/ProposalRepositorio";
+import { DateUtility } from "../DomainLayer/utils/DateUtility"
+import { Reservation } from "../DomainLayer/booking/valueObjects/Reservation/Reservation";
+import { VacationPackage } from "../DomainLayer/booking/entitys/VacationPackage";
+import { Proposal } from "../DomainLayer/booking/entitys/Proposal";
+import { AirlineReservation } from "../DomainLayer/booking/valueObjects/Reservation/AirlineReservation";
+import { HotelReservation } from "../DomainLayer/booking/valueObjects/Reservation/HotelReservation";
+import { Booking } from "../DomainLayer/booking/Booking";
 
 const customerRepo = new CustomerRepository();
 
