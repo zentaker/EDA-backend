@@ -1,4 +1,4 @@
-import { VacationPackage } from "./VacationPackage";
+import { VacationPackage } from "./entitys/VacationPackage";
 import { Reservation } from "./Reservation/Reservation";
 
 

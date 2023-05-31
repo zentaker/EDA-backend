@@ -1,3 +1,4 @@
 # Ignorar todos los archivos JavaScript
 *.js
 .js
+node_modules/

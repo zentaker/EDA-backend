@@ -3,18 +3,18 @@ const mensaje = "------ prueba cliente --------";
 
 console.log(mensaje);
 
-import { Customer } from "./objetos/Customer";
-import { Address } from "./objetos/Adress";
-import { CustomerRepository } from "./implementacion/CustomerRepositorio";
-import { VacationPackageRepo } from "./implementacion/VacationPackageRepositorio";
-import { ProposalRepository } from "./implementacion/ProposalRepositorio";
-import { DateUtility } from "./objetos/utils/DateUtility"
-import { Reservation } from "./objetos/Reservation/Reservation";
-import { VacationPackage } from "./objetos/VacationPackage";
-import { Proposal } from "./objetos/Proposal";
-import { AirlineReservation } from "./objetos/Reservation/AirlineReservation";
-import { HotelReservation } from "./objetos/Reservation/HotelReservation";
-import { Booking } from "./objetos/Booking";
+import { Customer } from "./DomainLayer/booking/entitys/Customer";
+import { Address } from "./DomainLayer/booking/valueObjects/Adress";
+import { CustomerRepository } from "./TestImplementacion/CustomerRepositorio";
+import { VacationPackageRepo } from "./TestImplementacion/VacationPackageRepositorio";
+import { ProposalRepository } from "./TestImplementacion/ProposalRepositorio";
+import { DateUtility } from "./DomainLayer/utils/DateUtility"
+import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Reservation";
+import { VacationPackage } from "./DomainLayer/booking/entitys/VacationPackage";
+import { Proposal } from "./DomainLayer/booking/entitys/Proposal";
+import { AirlineReservation } from "./DomainLayer/booking/valueObjects/Reservation/AirlineReservation";
+import { HotelReservation } from "./DomainLayer/booking/valueObjects/Reservation/HotelReservation";
+import { Booking } from "./DomainLayer/booking/Booking";
 
 const customerRepo = new CustomerRepository();
 

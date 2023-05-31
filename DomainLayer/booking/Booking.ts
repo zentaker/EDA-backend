@@ -17,4 +17,10 @@ export class Booking {
         this.custumerReference = proposal?.getCustomerReference();
 
     }
+    getReference(){
+        return this.reference;
+    }
+    setupMessaginService(){
+        
+    }
 }

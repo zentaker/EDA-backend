@@ -1,4 +1,4 @@
-import { Customer } from "../objetos/Customer";
+import { Customer } from "../DomainLayer/booking/entitys/Customer";
 
 
 export class CustomerRepository {

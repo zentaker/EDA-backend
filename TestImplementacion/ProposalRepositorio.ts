@@ -1,4 +1,4 @@
-import { Proposal } from "../objetos/Proposal"; 
+import { Proposal } from "../DomainLayer/booking/entitys/Proposal"; 
 
 export class ProposalRepository {
     private Proposals: Proposal[];

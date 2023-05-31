@@ -1,5 +1,5 @@
 import { DateUtility } from "./utils/DateUtility";
-import { Reservation } from "./Reservation/Reservation";
+import { Reservation } from "../DomainLayer/proposal/Reservation/Reservation";
 
 
 //Strategic Pattern: Entity
