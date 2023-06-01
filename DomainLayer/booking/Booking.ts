@@ -1,4 +1,5 @@
 import { Proposal } from "./entitys/Proposal";
+import { messagingService } from '../../ApplicationLayer/Messaging/MessagingService'
 
 
 //Strategic Pattern: Aggregate
@@ -15,12 +16,16 @@ export class Booking {
         this.reference = reference;
         this.proposalreference = proposal?.getReference();
         this.custumerReference = proposal?.getCustomerReference();
+        //this.setupMessaginService();
 
     }
     getReference(){
         return this.reference;
     }
     setupMessaginService(){
+        const messageservice = new messagingService();
+        console.log(this);
+        messageservice.subscribe(this);
         
     }
 }

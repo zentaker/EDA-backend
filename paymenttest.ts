@@ -1,4 +1,4 @@
-import { setupMessaging } from "./ApplicationLayer/MessaginService";
+
 import { BookingRepository } from "./Tests/TestRepositorys/bookingRepositorio";
 import { ProposalRepository } from "./Tests/TestRepositorys/ProposalRepositorio";
 import { DateUtility } from "./DomainLayer/utils/DateUtility";
@@ -50,7 +50,7 @@ console.log('--------------')
 
 
 const proposalbooking = proposalRepo.get(5000);
-console.log(proposalbooking);
+//console.log(proposalbooking);
 const booking1 = new Booking('PENDING_PAYMENT',6000, proposalbooking);
 const bookingRepo = new BookingRepository();
 bookingRepo.add(booking1);
@@ -59,6 +59,23 @@ bookingRepo.add(booking1);
 // obtener referencia del repositorio de el booking 
 const booking = bookingRepo.get(6000);
 //CREAR
+
+
+
+//1. Obtenermos la referencia al booking
+const bookingConfirmation = bookingRepo.get(6000);
+bookingConfirmation!.setupMessaginService();
+
+//2. creamos una instancia del handler y registramos en handler 
+
+
+// falta implementar el booking repo para guardar los repositorios
+
+
+
+
+
+
 
 
 

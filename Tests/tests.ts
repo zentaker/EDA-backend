@@ -1,7 +1,7 @@
 
 const mensaje = "------ prueba cliente --------";
 
-console.log(mensaje);
+//console.log(mensaje);
 
 import { Customer } from "../DomainLayer/booking/entitys/Customer";
 import { Address } from "../DomainLayer/booking/valueObjects/Adress";
@@ -15,6 +15,7 @@ import { Proposal } from "../DomainLayer/booking/entitys/Proposal";
 import { AirlineReservation } from "../DomainLayer/booking/valueObjects/Reservation/AirlineReservation";
 import { HotelReservation } from "../DomainLayer/booking/valueObjects/Reservation/HotelReservation";
 import { Booking } from "../DomainLayer/booking/Booking";
+import { BookingRepository } from "./TestRepositorys/bookingRepositorio";
 
 const customerRepo = new CustomerRepository();
 
@@ -42,18 +43,18 @@ customerRepo.add(customer4);
 
 const dateUtility = new DateUtility();
 const formattedDate = dateUtility.formatDate(new Date());
-console.log(formattedDate);
+//console.log(formattedDate);
 
 
-console.log(customer1.getEmail());
+/* console.log(customer1.getEmail());
 console.log(customerRepo.remove(100));
 console.log(customerRepo.get(101)?.getEmail());
 console.log("-------------------");
 console.log(customerRepo.get(103)?.toString());
-console.log();
+console.log(); */
 //console.log(customerRepo.getAll());
 
-console.log("----------------")
+//console.log("----------------")
 
 // const VacationPackage = new VacationPackage();
 // const VacationPackageRepo = new VacationPackageRepo();
@@ -109,7 +110,7 @@ const VacationPackage2 = new VacationPackage(
 VacationPackageRepository.add(VacationPackage2);
 
 //console.log(VacationPackageRepository.getAll());
-console.log("-------------")
+//console.log("-------------")
 
 const proposalRepo = new ProposalRepository();
 const date = new DateUtility();
@@ -119,14 +120,14 @@ const proposal1 = new Proposal(5000, 101, pacakgeforproposal, date.create(11,22,
 proposal1.setupReservationDates(0,date.create(13,20,2023),date.create(13,20,2023));
 proposal1.setupReservationDates(1,date.create(13,20,2023),date.create(13,20,2023));
 proposalRepo.add(proposal1);
-console.log('--------------')
+//console.log('--------------')
 //console.log(proposalRepo.getAll());
 
 
 const proposalbooking = proposalRepo.get(5000);
-console.log(proposalbooking);
+//console.log(proposalbooking);
 const booking1 = new Booking('PENDING_PAYMENT',6000, proposalbooking);
-console.log(booking1);
+//console.log(booking1);
 
 
 
@@ -135,7 +136,7 @@ console.log(booking1);
 
 
 
-console.log('-------FLOW TESTING-------')
+//console.log('-------FLOW TESTING-------')
 // FLOW TESTING
 // =======================================================
 // Customer calls in - Sales agent uses customer's phone number to pull customer information
@@ -143,11 +144,11 @@ console.log('-------FLOW TESTING-------')
  
 // =======================================================
 // Sales agent pull info for Vacation packages & susgests "3 Nights bahamas package"
-console.log("sugest packahe 3 night bahamas");
+//console.log("sugest packahe 3 night bahamas");
 const pacakgeforproposal2 = VacationPackageRepository.get("BAH3NIGHTHOTELAIR");
 // ========================================================
 // Customer likes the package so - Sales agent creates the proposal
-console.log("custumer likes so agent creates proposal");
+//console.log("custumer likes so agent creates proposal");
 const proposal2 = new Proposal(5002, 101, pacakgeforproposal2, date.createNow());
 // cuando se crea la propuesta y se toma el paquete vacacional se clonan las reservaciones 
 
@@ -174,9 +175,9 @@ airlineReservation.setupReturnFlightInformation(
     "UA1324"
 )
 
-console.log(proposal2);
+//console.log(proposal2);
 proposalRepo.add(proposal2);
-console.log(proposalRepo.getAll());
+//console.log(proposalRepo.getAll());
 
 // ============================================================
 // Sales agent MAY create additional proposals but customer commits to the proposal
@@ -184,8 +185,21 @@ console.log(proposalRepo.getAll());
 // Customer commits to proposal to a Booking Confirmation is created
 
 const booking2 = new Booking('PENDING_PAYMENT',928, proposal2);
-console.log(booking2);
+const bookingRepo = new BookingRepository();
+bookingRepo.add(booking2);
+
+
+//1. Obtenermos la referencia al booking
+const bookingConfirmation = bookingRepo.get(928);
+bookingConfirmation!.setupMessaginService();
+
+//2. creamos una instancia del handler y registramos en handler 
+
+console.log(booking2.setupMessaginService());
 // falta implementar el booking repo para guardar los repositorios
+
+
+
 
 
 

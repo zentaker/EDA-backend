@@ -1,6 +1,9 @@
 import * as amqp from 'amqplib';
+import { Booking } from '../../DomainLayer/booking/Booking';
 
-async function sendMessageToQueue() {
+export async function sendMessageToQueue(booking: string) {
+  const bookingm = booking;
+
     try {
 
             // Conectar a CloudAMQP
@@ -17,7 +20,7 @@ async function sendMessageToQueue() {
       await channel.assertQueue(queueName, queueOptions);
   
       // Mensaje a enviar
-      const message = 'Hola, este es mi mensaje'+ new Date();
+      const message = 'orden'+booking;
   
       // Publicar el mensaje en la cola
       channel.sendToQueue(queueName, Buffer.from(message));
@@ -33,5 +36,5 @@ async function sendMessageToQueue() {
   }
   
   // Llamar a la función para enviar el mensaje a la cola
-  sendMessageToQueue();
+  
   

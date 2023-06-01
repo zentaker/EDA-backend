@@ -23,7 +23,7 @@ async function connectToRabbitMQ() {
     channel.consume(queueName, (message) => {
       if (message !== null) {
         // Procesar el mensaje
-        console.log('Mensaje recibido:', message.content.toString());
+        console.log('Mensaje recibido:', message.toString());
 
         // Confirmar el mensaje recibido
         channel.ack(message);
