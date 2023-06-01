@@ -22,6 +22,10 @@ export class Booking {
     getReference(){
         return this.reference;
     }
+    getCustomerReference(){
+        return this.custumerReference;
+
+    }
     setupMessaginService(){
         const messageservice = new messagingService();
         console.log(this);

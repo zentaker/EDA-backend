@@ -20,6 +20,20 @@ export class ProposalRepository {
     getAll(): Proposal[] {
         return this.Proposals;
     }
+    getCustomerProposals(customerReference: number){
+        const customerProposals: Proposal[] = [];
+
+        for (const proposal of this.Proposals) {
+            if (proposal.getCustomerReference() === customerReference) {
+                customerProposals.push(proposal);
+            }
+        }
+
+        return customerProposals;
+
+
+
+    }
     remove(reference: number): boolean {
         //loop en la collecion
         for(const ProposalInCollection of this.Proposals){

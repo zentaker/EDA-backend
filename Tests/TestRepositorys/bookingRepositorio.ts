@@ -26,6 +26,19 @@ public getAll(): Booking[] {
     return this.Bookings;
   }
 
+  getByCustomer(customerReference: number){
+    const customerBookings: Booking[] = [];
+
+    for (const booking of this.Bookings) {
+      if (booking.getCustomerReference() === customerReference) {
+        customerBookings.push(booking);
+      }
+    }
+
+    return customerBookings;
+
+  }
+
   remove(reference: number): boolean {
     // Loop through the collection
     for (const BookingInCollection of this.Bookings) {
