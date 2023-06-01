@@ -2,6 +2,7 @@ import { Customer } from "../../DomainLayer/booking/entitys/Customer";
 import { CustomerRepository } from "../../Tests/TestRepositorys/CustomerRepositorio";
 import { ProposalRepository } from "../../Tests/TestRepositorys/ProposalRepositorio";
 import { BookingRepository } from "../../Tests/TestRepositorys/bookingRepositorio";
+import { CustomerHistoryResponse } from "./CustomerHistoryResponse";
 
 export class CustomerHistoryService {
 
@@ -20,7 +21,7 @@ export class CustomerHistoryService {
       const proposals = this.proposalRepo.getCustomerProposals(customerReference);
       const bookingConfirmations = this.bookingsRepo.getByCustomer(customerReference);
   
-      return {customer, proposals, bookingConfirmations};
+      return new CustomerHistoryResponse(customer, proposals, bookingConfirmations);
     }
   
   

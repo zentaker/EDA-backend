@@ -16,7 +16,7 @@ import { AirlineReservation } from "../DomainLayer/booking/valueObjects/Reservat
 import { HotelReservation } from "../DomainLayer/booking/valueObjects/Reservation/HotelReservation";
 import { Booking } from "../DomainLayer/booking/Booking";
 import { BookingRepository } from "./TestRepositorys/bookingRepositorio";
-import { CustomerHistoryService } from "../ApplicationLayer/CustumerHistory/CustomerHistory";
+import { CustomerHistoryService } from "../ApplicationLayer/CustumerHistory/CustomerHistoryService";
 
 const customerRepo = new CustomerRepository();
 
@@ -194,6 +194,8 @@ bookingRepo.add(booking2);
 const customerHistoryService = new CustomerHistoryService(customerRepo, proposalRepo, bookingRepo)
 console.log(customerHistoryService.getCustomerHistory(101));
 console.log('------------------')
+
+// Paymetgateway Service
 
 
 //1. Obtenermos la referencia al booking
