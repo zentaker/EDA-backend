@@ -9,6 +9,8 @@ import { AirlineReservation } from "./DomainLayer/booking/valueObjects/Reservati
 import { HotelReservation } from "./DomainLayer/booking/valueObjects/Reservation/HotelReservation";
 import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Reservation";
 import { VacationPackage } from "./DomainLayer/booking/entitys/VacationPackage";
+import { PaymentRecive } from "./ApplicationLayer/PaymentRecive/PaymentreciveHandler";
+import { EventBus } from "./ApplicationLayer/EventBus";
 
 
 
@@ -64,10 +66,29 @@ const booking = bookingRepo.get(6000);
 
 //1. Obtenermos la referencia al booking
 const bookingConfirmation = bookingRepo.get(6000);
-bookingConfirmation!.setupMessaginService();
+//bookingConfirmation!.setupMessaginService();
 
-//2. creamos una instancia del handler y registramos en handler 
+//2. creamos una instancia del handler(manejador) y registramos en handler 
+const handler = new PaymentRecive();
+EventBus.register('PAYMENT_RECIVE', handler)
 
+//3. registramos handlers(controladores) adicionales - opcional
+
+
+//4. se llama a un agregado que va a desencadenar el evento
+bookingConfirmation?.setupMessaginService();
+
+//5 devemos esperar la ejecucion del handler.handle(...) function
+
+
+
+// pasar de panding payment a payment recive
+
+//registrar en el event bus el nuevo evento 
+//eventBus.register(nombre: EVENT_PAYMENT_RECIVE, booking confirmation)
+
+//en el eventBUs
+//-- llamar al event dispatcher para enviar el evento a los handler 
 
 // falta implementar el booking repo para guardar los repositorios
 

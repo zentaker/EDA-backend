@@ -1,12 +1,26 @@
 export class paymentGatewayDetailresponse {
+    reference: number;
+    cardHolderLastname: string;
+    cardHolderFirstname: string;
+    transactionDate: Date;
+    transactionTyoe: string;//payment, Refound
+    amount: number;
+
     constructor(
-        private reference: string,
-        private cardHolderLastname: string,
-        private cardHolderFirstname: string,
-        private transactionDate: Date,
-        private transactionTyoe: string,//payment, Refound
-        private amount: number 
-    ){}
+        reference: number,
+        cardHolderLastname: string,
+        cardHolderFirstname: string,
+        transactionDate: Date,
+        transactionTyoe: string,//payment, Refound
+        amount: number 
+    ){
+        this.reference = reference;
+        this.cardHolderLastname = cardHolderLastname;
+        this.cardHolderFirstname = cardHolderFirstname;
+        this.transactionDate = transactionDate;
+        this.transactionTyoe = transactionTyoe;
+        this.amount = amount;
+    }
 
         //tecnicamnete aca se pudiese manejar la respuesta de los datos 
     //proporcionar metodos y propiedades para trabajar con los datos de la repsuesta
