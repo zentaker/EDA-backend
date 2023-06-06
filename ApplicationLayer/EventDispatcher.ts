@@ -8,7 +8,7 @@ que esten registrados al evento
 
 */
 export class EventDispatcher {
-    private handlers: EventHandler[] = [];
+    static handlers: EventHandler[] = [];
     public eventName: string;
     
     constructor(
@@ -19,16 +19,18 @@ export class EventDispatcher {
     }
     
 
-    register(handler:EventHandler){
+    static register(handler:EventHandler){
         //ver que el handler no esteb registrado todavia
         if(this.handlers.includes(handler)){
             return false
         }
+        console.log('handler registered:  '+ handler.handle);
+        console.log('-----------------');
         //agregar el chandler(controlador) a la collecion
         this.handlers.push(handler);
     }
     //funcion desregistrar
-    unregister(handler: EventHandler){
+    static unregister(handler: EventHandler){
         //ver que el handler no este registrado
         if(!this.handlers.includes(handler)){
             return false;
@@ -37,14 +39,16 @@ export class EventDispatcher {
         this.handlers = this.handlers.filter(h => h !== handler);
         return true;
     }
-    dispatch(event: Event){
+    static dispatch(event: Event){
         //1.checks if handler exists
         if(!this.handlers.length) return false;
+        console.log('dispatching event: ' + event.name);
         //2. loop throught the handlers ando invoke handle funciot
         this.handlers.forEach(handler => handler.handle(event));
         //3. return to indicate actiuon was susesfull
         return true;
     }
+  
 
 
 }
