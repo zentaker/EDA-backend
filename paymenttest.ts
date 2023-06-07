@@ -11,7 +11,8 @@ import { Reservation } from "./DomainLayer/booking/valueObjects/Reservation/Rese
 import { VacationPackage } from "./DomainLayer/booking/entitys/VacationPackage";
 import { PaymentRecive } from "./ApplicationLayer/PaymentRecive/PaymentreciveHandler";
 import { EventBus } from "./ApplicationLayer/EventBus";
-
+import { PaymentGatewayService } from "./infrastructureLayer/PaymentGateway/PaymentGatewayService";
+import { PaymentAuditRepository } from "./Tests/TestRepositorys/PaymentAuditRepositorio";
 
 
 const VacationPackageRepository = new VacationPackageRepo();
@@ -58,10 +59,6 @@ const bookingRepo = new BookingRepository();
 bookingRepo.add(booking1);
 
 
-// obtener referencia del repositorio de el booking 
-const booking = bookingRepo.get(6000);
-//CREAR
-
 
 
 //1. Obtenermos la referencia al booking
@@ -75,7 +72,17 @@ EventBus.register('PAYMENT_RECIVE', handler)
 //3. registramos handlers(controladores) adicionales - opcional
 
 
-//4. se llama a un agregado que va a desencadenar el evento
+//4. crear la intancia fake de la pasarella de pago
+const paymentGateway = new PaymentGatewayService();
+
+//5. crear la instancia del respositorio de la auditoria
+const paymentAuditRepo = new PaymentAuditRepository();
+
+//6. procesamos el pago
+console.log('Procesando el pago');
+
+
+//falta implementar el manejo del evento de el envio a rabbitmq
 bookingConfirmation?.setupMessaginService();
 
 //5 devemos esperar la ejecucion del handler.handle(...) function
