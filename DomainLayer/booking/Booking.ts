@@ -9,7 +9,7 @@ export class Booking {
     private proposalreference?: number;
     private custumerReference?: number;
     constructor(
-        private status: 'PENDING_PAYMENT'|'PENDING_RESERVATION'|' RESERVATION_IN_PROGRESS' | 'CONFIRMED'| 'CANCELLATION_IN_PROGRESS'| 'CANCELLED'|'UNKNOWN', 
+        private status: 'PENDING_PAYMENT'|'PENDING_RESERVATION'|'RESERVATION_IN_PROGRESS' | 'CONFIRMED'| 'CANCELLATION_IN_PROGRESS'| 'CANCELLED'|'UNKNOWN', 
         reference: number , 
         proposal: Proposal |null
         ){
@@ -32,4 +32,14 @@ export class Booking {
         messageservice.subscribe(this);
         
     }
+    //crear setpaymentconfiomation reference 
+    setPaymentConfirmation(){
+        this.status = 'PENDING_RESERVATION';
+    }
+    reserve(){
+        this.status = 'RESERVATION_IN_PROGRESS';
+        //logica para llamar a los proveedores de las reservaciones para inciial el proceso
+    }
+
+    
 }

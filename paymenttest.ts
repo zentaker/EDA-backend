@@ -13,6 +13,7 @@ import { PaymentRecive } from "./ApplicationLayer/PaymentRecive/PaymentreciveHan
 import { EventBus } from "./ApplicationLayer/EventBus";
 import { PaymentGatewayService } from "./infrastructureLayer/PaymentGateway/PaymentGatewayService";
 import { PaymentAuditRepository } from "./Tests/TestRepositorys/PaymentAuditRepositorio";
+import { PaymentAudit } from "./DomainLayer/PaymentAudit";
 
 
 const VacationPackageRepository = new VacationPackageRepo();
@@ -57,6 +58,7 @@ const proposalbooking = proposalRepo.get(5000);
 const booking1 = new Booking('PENDING_PAYMENT',6000, proposalbooking);
 const bookingRepo = new BookingRepository();
 bookingRepo.add(booking1);
+(global as any).bookingRepo = bookingRepo;
 
 
 
@@ -67,7 +69,7 @@ const bookingConfirmation = bookingRepo.get(6000);
 
 //2. creamos una instancia del handler(manejador) y registramos en handler 
 const handler = new PaymentRecive();
-EventBus.register('PAYMENT_RECIVE', handler)
+EventBus.register('EVENT_PAYMENT_RECEIVED', handler)
 
 //3. registramos handlers(controladores) adicionales - opcional
 
@@ -80,10 +82,17 @@ const paymentAuditRepo = new PaymentAuditRepository();
 
 //6. procesamos el pago
 console.log('Procesando el pago');
+const paymentAudit = new PaymentAudit(bookingConfirmation!.getReference(),'CHARGE' );
+
+//procesamos el pago
+paymentAudit.processPayment(4557353673638473, 5,2030, 91620, 1093.23, 'wang', 'michael');
+
+
+
 
 
 //falta implementar el manejo del evento de el envio a rabbitmq
-bookingConfirmation?.setupMessaginService();
+//bookingConfirmation?.setupMessaginService();
 
 //5 devemos esperar la ejecucion del handler.handle(...) function
 

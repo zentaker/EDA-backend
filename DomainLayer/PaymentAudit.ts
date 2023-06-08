@@ -3,14 +3,14 @@
 //5:40 inicio
 
 import { EventBus } from "../ApplicationLayer/EventBus";
-import { PaymentRecive } from "../ApplicationLayer/PaymentRecive/PaymentreciveHandler";
+import { PaymentReceived } from "../ApplicationLayer/PaymentRecive/PaymentRecive";
 import { PaymentAuditRepository } from "../Tests/TestRepositorys/PaymentAuditRepositorio";
 import { PaymentGatewayService } from "../infrastructureLayer/PaymentGateway/PaymentGatewayService";
 
 export class PaymentAudit{
     private reference: number; // referencia de auditoria para el pago
     private vendorReference: string | null; // referencia devuelta por el provedor de pago
-    private bookingReference: number;//referencia el booking para el cual es el pago
+    public bookingReference: number;//referencia el booking para el cual es el pago
     private transactionType: string;
     private transactionDate?: Date;
     private creditCardNumber?: number;
@@ -61,8 +61,12 @@ export class PaymentAudit{
 
    
         //obtenr los detalles de la transaccion
+      
         //problemas en manejar la respuesta del paymentgatewayresponse
         const txtdetails = garewayTxn.getTransactionsDetails(garewayTxn.reference);
+        console.log('detalle: '+txtdetails.reference);
+        console.log('         '+txtdetails.transactionTyoe);
+        console.log('         '+txtdetails.transactionDate);
 
         //guardarlos en el agregado
         this.reference = txtdetails.reference;
@@ -74,7 +78,8 @@ export class PaymentAudit{
         if(this.reference > 0){
             
             //raise the event
-            const event = new PaymentRecive(this)
+            const event = new PaymentReceived(this);
+
             EventBus.raise(event);
 
             return this.reference;

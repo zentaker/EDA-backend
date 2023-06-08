@@ -16,7 +16,7 @@ export class EventBus {
    
      static raise(event: Event){
         //1. get the dispatcher for the evet name
-        console.log('event raised:   '+ event.name);
+        console.log('raising event:   '+ event.name);
         let eventDispatcher = this.eventDispatchers.find(ed => ed.eventName === event.name);
         console.log('event dispatcher:  '+ eventDispatcher);
         console.log('-----------------');
