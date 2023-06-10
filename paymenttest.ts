@@ -14,6 +14,8 @@ import { EventBus } from "./ApplicationLayer/EventBus";
 import { PaymentGatewayService } from "./infrastructureLayer/PaymentGateway/PaymentGatewayService";
 import { PaymentAuditRepository } from "./Tests/TestRepositorys/PaymentAuditRepositorio";
 import { PaymentAudit } from "./DomainLayer/PaymentAudit";
+import { PubSubService } from "./infrastructureLayer/rabbitmq/PubSubService";
+import { MessagingService } from "./ApplicationLayer/Messaging/MessagingService";
 
 
 const VacationPackageRepository = new VacationPackageRepo();
@@ -60,10 +62,32 @@ const bookingRepo = new BookingRepository();
 bookingRepo.add(booking1);
 (global as any).bookingRepo = bookingRepo;
 
+//iniciamos el servicio de mensajeria
+
+//1. crear la instancia dl messagin service 
+const url = 'amqps://kcutczsz:kesNHxIyaLWTJz5SJN82HG5wiswraCgZ@prawn.rmq.cloudamqp.com/kcutczsz'
+const queueName = 'email.notification'
+console.log('instanciando el servicio');
+
+export const service = new MessagingService(url, queueName);
+console.log(service.channelStatus());
+service.start().then(() => {
+    
+    console.log(service.channelStatus());
+
+    if(service.channelStatus()=== true){
+        console.log('intentando publicar');
+        service.publish('prueba');
+        service.stop();
+
+    }else{ console.log('error al publicar');}
+})
 
 
+//set the messagin service on the booking respositorui
+//bookingRepo.setupMessaginService();
 
-//1. Obtenermos la referencia al booking
+/* //1. Obtenermos la referencia al booking
 const bookingConfirmation = bookingRepo.get(6000);
 //bookingConfirmation!.setupMessaginService();
 
@@ -85,36 +109,5 @@ console.log('Procesando el pago');
 const paymentAudit = new PaymentAudit(bookingConfirmation!.getReference(),'CHARGE' );
 
 //procesamos el pago
-paymentAudit.processPayment(4557353673638473, 5,2030, 91620, 1093.23, 'wang', 'michael');
-
-
-
-
-
-//falta implementar el manejo del evento de el envio a rabbitmq
-//bookingConfirmation?.setupMessaginService();
-
-//5 devemos esperar la ejecucion del handler.handle(...) function
-
-
-
-// pasar de panding payment a payment recive
-
-//registrar en el event bus el nuevo evento 
-//eventBus.register(nombre: EVENT_PAYMENT_RECIVE, booking confirmation)
-
-//en el eventBUs
-//-- llamar al event dispatcher para enviar el evento a los handler 
-
-// falta implementar el booking repo para guardar los repositorios
-
-
-
-
-
-
-
-
-
-
+paymentAudit.processPayment(4557353673638473, 5,2030, 91620, 1093.23, 'wang', 'michael'); */
 

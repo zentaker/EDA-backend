@@ -21,6 +21,7 @@ import { SomeActionHappened } from "./staticBrokerTest/SomeActionHappendHandler"
 import { EventHandler } from "../ApplicationLayer/EventHandler";
 import { EventBus } from "../ApplicationLayer/EventBus";
 import { AggregateRoot } from "./staticBrokerTest/AggregateRoot";
+import { MessagingService } from "../ApplicationLayer/Messaging/MessagingService";
 
 const customerRepo = new CustomerRepository();
 
@@ -249,6 +250,7 @@ const bookingConfirmation = bookingRepo.get(928);
 //console.log(booking2.setupMessaginService());
 // falta implementar el booking repo para guardar los repositorios
 
+//1. crear la instancia dl messagin service 
 
 
 

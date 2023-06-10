@@ -1,6 +1,4 @@
 import { Proposal } from "./entitys/Proposal";
-import { messagingService } from '../../ApplicationLayer/Messaging/MessagingService'
-
 
 //Strategic Pattern: Aggregate
 export class Booking {
@@ -26,12 +24,7 @@ export class Booking {
         return this.custumerReference;
 
     }
-    setupMessaginService(){
-        const messageservice = new messagingService();
-        console.log(this);
-        messageservice.subscribe(this);
-        
-    }
+
     //crear setpaymentconfiomation reference 
     setPaymentConfirmation(){
         this.status = 'PENDING_RESERVATION';
