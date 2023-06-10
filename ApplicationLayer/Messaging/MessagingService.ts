@@ -1,5 +1,4 @@
 import { Booking } from "../../DomainLayer/booking/Booking";
-import {sendMessageToQueue} from '../../infrastructureLayer/rabbitmq/PubSubServiceTest'
 import * as amqp from 'amqplib';
 import { MessagingException } from "./MessaginException";
 export class MessagingService{
@@ -14,16 +13,25 @@ export class MessagingService{
         this.status = false;
       }
 
-    subscribe(booking: Booking) {
+    async subscribe(booking: Booking) {
+        if (this.status == false ) {
+            return new MessagingException('El canal no esta abierto');
+        }
+        
 
-
-        //para poder enviar el mensaje
-        const bookingm = JSON.stringify(booking);
-        sendMessageToQueue(bookingm);
-
-
-
-
+    // Consumir mensajes de la cola
+    this.channel.consume(this.queueName, (message: { toString: () => any; } | null) => {
+        if (message !== null) {
+          // Procesar el mensaje
+          console.log('Mensaje recibido:', message.toString());
+  
+          // Confirmar el mensaje recibido
+          this.channel.ack(message);
+        }
+      });
+  
+        
+  
 
     }
     channelStatus(){

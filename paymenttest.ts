@@ -14,7 +14,6 @@ import { EventBus } from "./ApplicationLayer/EventBus";
 import { PaymentGatewayService } from "./infrastructureLayer/PaymentGateway/PaymentGatewayService";
 import { PaymentAuditRepository } from "./Tests/TestRepositorys/PaymentAuditRepositorio";
 import { PaymentAudit } from "./DomainLayer/PaymentAudit";
-import { PubSubService } from "./infrastructureLayer/rabbitmq/PubSubService";
 import { MessagingService } from "./ApplicationLayer/Messaging/MessagingService";
 
 
@@ -65,22 +64,25 @@ bookingRepo.add(booking1);
 //iniciamos el servicio de mensajeria
 
 //1. crear la instancia dl messagin service 
-const url = 'amqps://kcutczsz:kesNHxIyaLWTJz5SJN82HG5wiswraCgZ@prawn.rmq.cloudamqp.com/kcutczsz'
+const url = 'amqps://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz'
 const queueName = 'email.notification'
-console.log('instanciando el servicio');
+
 
 export const service = new MessagingService(url, queueName);
 console.log(service.channelStatus());
 service.start().then(() => {
-    
+
     console.log(service.channelStatus());
 
     if(service.channelStatus()=== true){
-        console.log('intentando publicar');
-        service.publish('prueba');
+
+
+
+       
+        service.publish('booking');
         service.stop();
 
-    }else{ console.log('error al publicar');}
+    }else{ console.log('error ');}
 })
 
 
