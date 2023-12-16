@@ -64,7 +64,7 @@ bookingRepo.add(booking1);
 //iniciamos el servicio de mensajeria
 
 //1. crear la instancia dl messagin service 
-const url = 'amqps://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxz'
+/* onst url = 'amqps://kcutczsz:kesNHxIyaLWTJz5SJN82HG5wiswraCgZ@prawn.rmq.cloudamqp.com/kcutczsz'
 const queueName = 'email.notification'
 
 
@@ -84,12 +84,12 @@ service.start().then(() => {
 
     }else{ console.log('error ');}
 })
-
+ */
 
 //set the messagin service on the booking respositorui
 //bookingRepo.setupMessaginService();
 
-/* //1. Obtenermos la referencia al booking
+ //1. Obtenermos la referencia al booking
 const bookingConfirmation = bookingRepo.get(6000);
 //bookingConfirmation!.setupMessaginService();
 
@@ -111,5 +111,5 @@ console.log('Procesando el pago');
 const paymentAudit = new PaymentAudit(bookingConfirmation!.getReference(),'CHARGE' );
 
 //procesamos el pago
-paymentAudit.processPayment(4557353673638473, 5,2030, 91620, 1093.23, 'wang', 'michael'); */
+paymentAudit.processPayment(4557353673638473, 5,2030, 91620, 1093.23, 'wang', 'michael');
 

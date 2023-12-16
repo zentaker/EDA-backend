@@ -1,8 +1,13 @@
 {
   "dependencies": {
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.3",
+    "pg": "^8.11.3",
+    "pg-promise": "^11.5.4"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.10.1"
+    "@types/amqplib": "^0.10.1",
+    "@types/node": "^20.8.10",
+    "@types/pg-promise": "^5.4.3",
+    "typescript": "^5.2.2"
   }
 }
